@@ -1,6 +1,6 @@
 import crypto = require('crypto');
 import { readFileSync, writeFileSync } from 'fs';
-import { saveError } from 'solun-general-package';
+import { saveError } from 'solun-database-package';
 
 const algorithm = 'aes-256-cbc';
 const ivLength = 16;
