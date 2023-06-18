@@ -1,6 +1,6 @@
 {
   "name": "solun-server-encryption-package",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This package is used to manage the server encryption functions used by solun.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
