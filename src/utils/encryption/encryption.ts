@@ -1,6 +1,6 @@
 import crypto = require('crypto');
 import { readFileSync, writeFileSync } from 'fs';
-import { saveError } from 'solun-database-package';
+import { birdLog } from 'solun-database-package';
 
 const algorithm = 'aes-256-cbc';
 const ivLength = 16;
@@ -14,7 +14,7 @@ export async function encrypt(message: string, key: string) {
     encrypted += cipher.final('hex');
     return iv.toString('hex') + ':' + encrypted;
   } catch (err) {
-    saveError('encrypt', err, 'error');
+    birdLog('encrypt', err, 'error');
   }
 }
 
@@ -32,7 +32,7 @@ export async function decrypt(message: string, key: string) {
     decrypted += decipher.final('utf8');
     return decrypted;
   } catch (err) {
-    saveError('decrypt', err, 'error');
+    birdLog('decrypt', err, 'error');
   }
 }
 
@@ -45,7 +45,7 @@ export async function encryptFile(path: string, key: string, iv: Buffer) {
     
     writeFileSync(path, encryptedBuffer);
   } catch (err) {
-    saveError('encryptFile', err, 'error');
+    birdLog('encryptFile', err, 'error');
     console.error(err);
     return;
   }
@@ -61,7 +61,7 @@ export async function decryptFile(path: string, key: string, iv: string) {
     
     writeFileSync(path, decryptedData);
   } catch (err) {
-    saveError('decryptFile', err, 'error');
+    birdLog('decryptFile', err, 'error');
     console.error(err);
     return;
   }
@@ -78,7 +78,7 @@ export async function decryptFileData(fileData: any, key: string, iv: string) {
 
     return decryptedData;
   } catch (err) {
-    saveError('decryptFileData', err, 'error');
+    birdLog('decryptFileData', err, 'error');
     return {
       message: "An error occurred while decrypting the file, please try again",
     };
